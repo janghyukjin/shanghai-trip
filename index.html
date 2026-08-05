@@ -236,6 +236,7 @@
   .d li { display: grid; grid-template-columns: 52px 1fr; gap: 12px; font-size: 14.5px; padding: 3px 0; }
   .d li time { font-family: var(--mono); font-size: 12.5px; color: var(--fg-3); font-variant-numeric: tabular-nums; }
   .d li b { font-weight: 700; }
+  .d li em { font-style: normal; color: var(--fg-3); font-size: 13px; }
 
   /* ═══════════ 동선 지도 ═══════════ */
   .map {
@@ -485,8 +486,9 @@
           <ul>
             <li><time>14:30</time><span>시내 이동 후 체크인</span></li>
             <li><time>16:00</time><span><b>톈쯔팡</b> 또는 신톈디</span></li>
-            <li><time>18:30</time><span>상하이 요리 · 딤섬</span></li>
-            <li><time>20:00</time><span><b>와이탄 야경</b></span></li>
+            <li><time>18:30</time><span><b>晟永兴</b> 베이징덕 <em>미슐랭 1스타 · 예약 필수</em></span></li>
+            <li><time>20:00</time><span><b>와이탄 야경</b> <em>식당에서 도보 5분</em></span></li>
+            <li><time>21:30</time><span><b>양꼬치</b> 浙江中路 <em>난징동루 백화점 구역 · 4위안/꼬치</em></span></li>
           </ul>
           <div class="map" data-day="1"></div>
         </div>
@@ -515,8 +517,9 @@
           <span class="when">10월 4일 · 일</span>
           <ul>
             <li><time>10:30</time><span><b>예원</b> · 난샹만두 소룡포</span></li>
-            <li><time>13:00</time><span><b>우캉루</b> — 사진 최고 구역</span></li>
-            <li><time>18:00</time><span>훠궈 또는 게살요리</span></li>
+            <li><time>12:30</time><span><b>裕兴记</b> 게살면 <em>蟹粉麵 · 인민광장</em></span></li>
+            <li><time>14:00</time><span><b>우캉루</b> — 사진 최고 구역</span></li>
+            <li><time>18:00</time><span>훠궈 또는 상하이 요리</span></li>
             <li><time>20:00</time><span>황푸강 유람선 또는 상하이타워</span></li>
           </ul>
           <div class="map" data-day="3"></div>
@@ -551,6 +554,7 @@
     <h2>지금 할 것 <span class="han">出發前</span></h2>
     <div class="must">
       <div class="m"><span class="dot"></span><span class="txt"><b>디즈니 티켓 + Premier Access</b> <span>— 셋 다, 국경절은 조기 매진</span></span></div>
+      <div class="m"><span class="dot"></span><span class="txt"><b>晟永兴 예약</b> <span>— 1일차 저녁, 미슐랭 1스타라 연휴엔 자리 없음</span></span></div>
       <div class="m"><span class="dot"></span><span class="txt"><b>알리페이 / 위챗페이</b> <span>— 해외카드 등록 + 테스트 결제. 현금 안 받음</span></span></div>
       <div class="m"><span class="dot"></span><span class="txt"><b>VPN 설치</b> <span>— 한국에서 미리. 중국에선 설치 막힘</span></span></div>
       <div class="m"><span class="dot"></span><span class="txt"><b>숙소 예약</b> <span>— 2호선 라인, 3명이라 아파트형</span></span></div>
@@ -615,13 +619,14 @@
 
     var DAYS = {
       "1": {
-        caption: ["10호선 → 2호선", "공항에서 시내 40분 · 톈쯔팡~와이탄 지하철 10분"],
+        caption: ["10호선 → 2호선", "공항에서 시내 40분 · 저녁~야식은 전부 도보권"],
         pins: [
           { n: 1, name: "홍차오공항 T1", sub: "SHA", lat: 31.1979, lng: 121.3300, dx: 2.8, dy: 1.2, a: "start" },
-          { n: 2, name: "숙소 · 난징동루", sub: "2호선", lat: 31.2360, lng: 121.4790, dx: 2.8, dy: -2.2, a: "start" },
+          { n: 2, name: "숙소 · 난징동루", sub: "2호선", lat: 31.2360, lng: 121.4790, dx: 2.8, dy: -3.4, a: "start" },
           { n: 3, name: "톈쯔팡", sub: "田子坊", lat: 31.2093, lng: 121.4680, dx: -2.8, dy: 3.8, a: "end" },
-          { n: 4, name: "신톈디", sub: "新天地 · 저녁", lat: 31.2205, lng: 121.4750, dx: 2.8, dy: 3.6, a: "start" },
-          { n: 5, name: "와이탄", sub: "外滩 · 야경", lat: 31.2397, lng: 121.4900, dx: 2.8, dy: -1.4, a: "start", star: true }
+          { n: 4, name: "晟永兴", sub: "베이징덕 · 광둥루 20호", lat: 31.2372, lng: 121.4864, dx: 2.8, dy: 4.4, a: "start", star: true },
+          { n: 5, name: "와이탄 야경", sub: "外滩", lat: 31.2397, lng: 121.4900, dx: 2.8, dy: -1.6, a: "start" },
+          { n: 6, name: "양꼬치", sub: "浙江中路 · 야식", lat: 31.2340, lng: 121.4795, dx: -3.0, dy: 1.6, a: "end" }
         ]
       },
       "2": {
@@ -633,12 +638,13 @@
         ]
       },
       "3": {
-        caption: ["10호선 한 줄", "예원 → 우캉루 25분 · 저녁은 장위안 근처"],
+        caption: ["10호선 한 줄", "예원 → 게살면 15분 → 우캉루 25분"],
         pins: [
-          { n: 1, name: "예원", sub: "豫园 · 소룡포", lat: 31.2270, lng: 121.4920, dx: 2.8, dy: 3.0, a: "start", star: true },
-          { n: 2, name: "우캉루", sub: "武康路 · 사진", lat: 31.2110, lng: 121.4380, dx: 2.8, dy: -2.2, a: "start" },
-          { n: 3, name: "장위안", sub: "张园 · 쇼핑", lat: 31.2278, lng: 121.4636, dx: -2.8, dy: -2.0, a: "end" },
-          { n: 4, name: "상하이타워", sub: "118층 전망대", lat: 31.2337, lng: 121.5055, dx: -2.8, dy: 3.6, a: "end" }
+          { n: 1, name: "예원", sub: "豫园 · 소룡포", lat: 31.2270, lng: 121.4920, dx: 2.8, dy: 3.2, a: "start", star: true },
+          { n: 2, name: "裕兴记 게살면", sub: "蟹粉麵 · 인민광장", lat: 31.2320, lng: 121.4740, dx: 0, dy: -3.2, a: "middle" },
+          { n: 3, name: "우캉루", sub: "武康路 · 사진", lat: 31.2110, lng: 121.4380, dx: 2.8, dy: -2.4, a: "start" },
+          { n: 4, name: "장위안", sub: "张园 · 쇼핑", lat: 31.2278, lng: 121.4636, dx: -2.8, dy: 4.2, a: "end" },
+          { n: 5, name: "상하이타워", sub: "118층 전망대", lat: 31.2337, lng: 121.5055, dx: -2.8, dy: 3.8, a: "end" }
         ]
       },
       "4": {
