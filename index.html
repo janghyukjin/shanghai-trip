@@ -6,7 +6,7 @@
 <title>上海 · 상하이 3박 4일 가이드</title>
 <meta name="description" content="상하이 3박 4일 여행 가이드 — 2026.10.02~10.05, 디즈니랜드 포함">
 <meta property="og:title" content="上海 · 상하이 3박 4일 가이드">
-<meta property="og:description" content="명소 사진과 구글맵 동선을 담은 상하이 3박 4일 일정">
+<meta property="og:description" content="명소 사진과 일자별 동선 지도를 담은 상하이 3박 4일 일정">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127979;</text></svg>">
 <style>*,*::before,*::after{margin:0;padding:0}</style>
@@ -245,23 +245,39 @@
   }
   .map svg { width: 100%; height: auto; display: block; }
 
-  /* 구글맵 임베드 */
+  /* 지도 */
   .map .frame {
-    position: relative; aspect-ratio: 16 / 9;
-    background: rgba(62,140,122,.08);
+    position: relative; aspect-ratio: 16 / 10;
+    background: #e8e3da;
     border-bottom: 1px solid var(--line);
+    z-index: 1;
   }
-  .map .frame::after {
-    content: "지도 불러오는 중"; position: absolute; inset: 0;
+
+  /* 번호 핀 */
+  .pinmark {
     display: grid; place-items: center;
-    font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
-    color: var(--fg-3); transition: opacity .3s;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--vermilion); color: #fff;
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+    border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,.4);
   }
-  .map .frame.ready::after { opacity: 0; }
-  .map .frame iframe {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    border: 0; display: block; z-index: 1;
+  .pinmark.star { background: #b98a12; }
+
+  /* 지도 팝업 */
+  .leaflet-popup-content-wrapper {
+    border-radius: 3px; padding: 2px;
+    font-family: var(--body); box-shadow: 0 6px 24px rgba(0,0,0,.3);
   }
+  .leaflet-popup-content { margin: 10px 13px; line-height: 1.6; max-width: 210px; }
+  .leaflet-popup-content b { display: block; font-size: 14px; font-weight: 700; color: #17120f; }
+  .leaflet-popup-content i {
+    display: block; font-style: normal; font-family: var(--mono);
+    font-size: 10px; letter-spacing: .1em; color: #8a7157; margin-top: 1px;
+  }
+  .leaflet-popup-content span { display: block; font-size: 12.5px; color: #574636; margin-top: 6px; }
+  .leaflet-container { font-family: var(--body); background: #e8e3da; }
+  .leaflet-control-attribution { font-size: 9px; }
+  .leaflet-control-attribution a { color: #2f6b5c; }
 
   /* 명소 카드 */
   .map .spots {
@@ -629,7 +645,8 @@
           <ul>
             <li><time>10:30</time><span><b>예원</b> · 난샹만두 소룡포</span></li>
             <li><time>12:30</time><span><b>해가대원</b> 게살면 <em>Cejerdary 蟹家大院 · 광둥루 59호 · ¥72</em></span></li>
-            <li><time>14:00</time><span><b>우캉루</b> — 사진 최고 구역</span></li>
+            <li><time>14:00</time><span><b>우캉맨션</b> <em>武康大楼 · 다리미 빌딩</em></span></li>
+            <li><time>15:00</time><span><b>우캉루</b> 산책 <em>플라타너스 길 · 사진 최고 구역</em></span></li>
             <li><time>18:00</time><span>훠궈 또는 상하이 요리</span></li>
             <li><time>20:00</time><span>황푸강 유람선 또는 상하이타워</span></li>
           </ul>
@@ -700,6 +717,9 @@
 
   <div class="tail"></div>
 </div>
+
+<link rel="stylesheet" href="vendor/leaflet.css">
+<script src="vendor/leaflet.js"></script>
 
 <script>
   (function () {
@@ -784,9 +804,9 @@
           { n: 2, name: "해가대원", sub: "Cejerdary 蟹家大院", art: "noodle",
             desc: "게살면의 대표 브랜드. 양청호 자체 양식장 운영, 게살면 ¥72. 광둥루 59호.",
             lat: 31.2371, lng: 121.4855, dx: 0, dy: -3.2, a: "middle" },
-          { n: 3, name: "우캉루", sub: "武康路 · 사진", art: "tree",
-            desc: "플라타너스 가로수와 프랑스 조계지 시절 저택이 이어지는 산책로.",
-            lat: 31.2110, lng: 121.4380, dx: 2.8, dy: -2.4, a: "start" },
+          { n: 3, name: "우캉맨션", sub: "武康大楼 · 우캉루", art: "tree",
+            desc: "1924년 지은 다리미 모양 아파트. 상하이에서 사진이 가장 많이 찍히는 건물이고, 여기서 우캉루 플라타너스 길이 시작됩니다.",
+            lat: 31.2085, lng: 121.4325, dx: 2.8, dy: -2.4, a: "start" },
           { n: 4, name: "장위안", sub: "张园 · 쇼핑", art: "mansion",
             desc: "석고문 단지를 복원해 명품 거리로 바꾼 구역. 건물 자체가 볼거리.",
             lat: 31.2278, lng: 121.4636, dx: -2.8, dy: 4.2, a: "end" },
@@ -941,20 +961,6 @@
 
     var ll = function (p) { return p.lat + "," + p.lng; };
 
-    /* 구글맵 임베드 URL — 대중교통(!3e3) + 핀 순서대로 경유지 */
-    function embedUrl(pins) {
-      var n = pins.length;
-      var pb = "!1m" + (4 * n + 2) + "!4m" + (4 * n + 1) + "!3e3";
-      pins.forEach(function (p) { pb += "!4m3!3m2!1d" + p.lat + "!2d" + p.lng; });
-      return "https://www.google.com/maps/embed?origin=mfe&pb=" + pb;
-    }
-
-    /* 단일 장소 임베드 — 카드를 눌렀을 때 */
-    function placeUrl(p) {
-      return "https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s"
-        + p.lat + "," + p.lng + "!6i17";
-    }
-
     /* 구글맵 앱/웹으로 열기 */
     function dirUrl(pins) {
       var u = "https://www.google.com/maps/dir/?api=1&travelmode=transit"
@@ -968,34 +974,68 @@
       var pins = day.pins;
       var routeBtn;
 
-      /* 지도 프레임 */
+      /* 지도 프레임 — 실제 지도에 번호 핀 + 이어주는 선 */
+      var ok = !!window.L;
       var frame = document.createElement("div");
       frame.className = "frame";
-      var ifr = document.createElement("iframe");
-      ifr.src = embedUrl(pins);
-      ifr.loading = "lazy";
-      ifr.referrerPolicy = "no-referrer-when-downgrade";
-      ifr.setAttribute("allowfullscreen", "");
-      ifr.title = day.caption[0] + " 동선";
-      var ok = false;
-      ifr.addEventListener("load", function () { ok = true; frame.classList.add("ready"); });
-      frame.appendChild(ifr);
       host.appendChild(frame);
+
+      var map = null, markers = [], bounds = null;
+      if (ok) {
+        var latlngs = pins.map(function (p) { return [p.lat, p.lng]; });
+        bounds = L.latLngBounds(latlngs).pad(0.22);
+
+        map = L.map(frame, {
+          scrollWheelZoom: false, zoomSnap: .5,
+          attributionControl: true
+        }).fitBounds(bounds);
+
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19, minZoom: 9,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        /* 스팟을 순서대로 잇는 선 */
+        L.polyline(latlngs, {
+          color: "#e5372b", weight: 3, opacity: .9,
+          dashArray: "8 7", lineCap: "round"
+        }).addTo(map);
+
+        pins.forEach(function (p) {
+          var mk = L.marker([p.lat, p.lng], {
+            title: p.name,
+            icon: L.divIcon({
+              className: "",
+              html: '<b class="pinmark' + (p.star ? " star" : "") + '">' + p.n + "</b>",
+              iconSize: [26, 26], iconAnchor: [13, 13], popupAnchor: [0, -14]
+            })
+          }).addTo(map);
+          mk.bindPopup('<b>' + p.name + "</b>" + (p.sub ? '<i>' + p.sub + "</i>" : "")
+            + (p.desc ? "<span>" + p.desc + "</span>" : ""));
+          markers.push(mk);
+        });
+
+        host._map = map;
+      }
 
       /* 명소 카드 — 누르면 지도가 그 장소로 이동 */
       var spots = document.createElement("div");
       spots.className = "spots";
       var cards = [];
 
-      function focusSpot(card, p) {
+      function focusSpot(card, p, i) {
         cards.forEach(function (c) { c.classList.remove("active"); c.setAttribute("aria-pressed", "false"); });
         if (routeBtn) routeBtn.classList.remove("active");
         if (card) { card.classList.add("active"); card.setAttribute("aria-pressed", "true"); }
-        if (ok) ifr.src = placeUrl(p);
-        else window.open("https://www.google.com/maps/search/?api=1&query=" + ll(p), "_blank", "noopener");
+        if (map) {
+          map.setView([p.lat, p.lng], 16, { animate: true });
+          if (markers[i]) markers[i].openPopup();
+        } else {
+          window.open("https://www.google.com/maps/search/?api=1&query=" + ll(p), "_blank", "noopener");
+        }
       }
 
-      pins.forEach(function (p) {
+      pins.forEach(function (p, idx) {
         var card = document.createElement("button");
         card.type = "button";
         card.className = "spot" + (p.star ? " star" : "");
@@ -1038,7 +1078,7 @@
         }
         card.appendChild(body);
 
-        card.addEventListener("click", function () { focusSpot(card, p); });
+        card.addEventListener("click", function () { focusSpot(card, p, idx); });
         cards.push(card);
         spots.appendChild(card);
       });
@@ -1059,7 +1099,7 @@
       routeBtn.addEventListener("click", function () {
         cards.forEach(function (c) { c.classList.remove("active"); c.setAttribute("aria-pressed", "false"); });
         routeBtn.classList.add("active");
-        if (ok) ifr.src = embedUrl(pins);
+        if (map) { map.closePopup(); map.fitBounds(bounds, { animate: true }); }
       });
       cap.appendChild(routeBtn);
 
@@ -1072,10 +1112,8 @@
       cap.appendChild(go);
       host.appendChild(cap);
 
-      /* 구글맵이 막힌 환경이면 직접 그린 지도로 대체 */
-      window.setTimeout(function () {
-        if (!ok) { frame.remove(); renderSvgMap(host, day); }
-      }, 3500);
+      /* 지도 라이브러리를 못 불러온 환경이면 직접 그린 지도로 대체 */
+      if (!ok) { frame.remove(); renderSvgMap(host, day); }
     }
 
     var maps = document.querySelectorAll(".map[data-day]");
@@ -1089,7 +1127,11 @@
     } else {
       var mio = new IntersectionObserver(function (es) {
         es.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add("on"); mio.unobserve(e.target); }
+          if (e.isIntersecting) {
+            e.target.classList.add("on");
+            if (e.target._map) e.target._map.invalidateSize();
+            mio.unobserve(e.target);
+          }
         });
       }, { threshold: .2 });
       maps.forEach(function (m) { mio.observe(m); });
@@ -1099,7 +1141,7 @@
     var CREDIT_NAMES = {
       plane: "홍차오공항", hotel: "난징동루", alley: "톈쯔팡", duck: "베이징덕",
       bund: "와이탄", skewer: "양꼬치", metro: "지하철 환승", castle: "디즈니랜드",
-      garden: "예원", noodle: "게살면", tree: "우캉루", mansion: "장위안",
+      garden: "예원", noodle: "게살면", tree: "우캉맨션", mansion: "장위안",
       tower: "상하이타워", temple: "징안쓰", coffee: "스타벅스 로스터리"
     };
     var clist = document.getElementById("credit-list");
