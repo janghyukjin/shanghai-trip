@@ -6,7 +6,7 @@
 <title>上海 · 상하이 3박 4일 가이드</title>
 <meta name="description" content="상하이 3박 4일 여행 가이드 — 2026.10.02~10.05, 디즈니랜드 포함">
 <meta property="og:title" content="上海 · 상하이 3박 4일 가이드">
-<meta property="og:description" content="일자별 동선 지도와 핵심 정보만 담은 상하이 3박 4일 일정">
+<meta property="og:description" content="일자별 구글맵 동선과 핵심 정보만 담은 상하이 3박 4일 일정">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127979;</text></svg>">
 <style>*,*::before,*::after{margin:0;padding:0}</style>
@@ -244,6 +244,59 @@
     background: rgba(62,140,122,.05); overflow: hidden;
   }
   .map svg { width: 100%; height: auto; display: block; }
+
+  /* 구글맵 임베드 */
+  .map .frame {
+    position: relative; aspect-ratio: 16 / 9;
+    background: rgba(62,140,122,.08);
+    border-bottom: 1px solid var(--line);
+  }
+  .map .frame::after {
+    content: "지도 불러오는 중"; position: absolute; inset: 0;
+    display: grid; place-items: center;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
+    color: var(--fg-3); transition: opacity .3s;
+  }
+  .map .frame.ready::after { opacity: 0; }
+  .map .frame iframe {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    border: 0; display: block; z-index: 1;
+  }
+
+  /* 번호 범례 */
+  .map .legend {
+    list-style: none; margin: 0; padding: 12px 14px;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px 18px; border-bottom: 1px solid var(--line);
+  }
+  .map .legend li {
+    display: flex; align-items: baseline; gap: 8px;
+    font-size: 13px; min-width: 0;
+  }
+  .map .legend i {
+    flex: 0 0 auto; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--vermilion); color: var(--bg);
+    font-family: var(--mono); font-size: 9.5px; font-weight: 700; font-style: normal;
+    display: grid; place-items: center; position: relative; top: 2px;
+  }
+  .map .legend li.star i { background: var(--gold); }
+  .map .legend li.star b { color: var(--gold); }
+  .map .legend b { font-weight: 700; white-space: nowrap; }
+  .map .legend span {
+    color: var(--fg-3); font-size: 11.5px; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap; min-width: 0;
+  }
+  .map .legend a {
+    margin-left: auto; flex: 0 0 auto; text-decoration: none;
+    color: var(--fg-3); font-size: 12px; padding: 0 2px;
+    transition: color .2s;
+  }
+  .map .legend a:hover, .map .legend a:focus-visible { color: var(--gold); }
+
+  @media (max-width: 560px) {
+    .map .frame { aspect-ratio: 4 / 3; }
+    .map .legend { grid-template-columns: 1fr; }
+  }
 
   .map .river {
     fill: none; stroke: rgba(62,140,122,.24); stroke-width: 3.6;
@@ -667,7 +720,7 @@
       return e;
     }
 
-    function renderMap(host, day) {
+    function renderSvgMap(host, day) {
       var pins = day.pins;
       var xs = pins.map(px), ys = pins.map(py);
       var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs);
@@ -737,7 +790,79 @@
         svg.appendChild(g);
       });
 
-      host.appendChild(svg);
+      host.insertBefore(svg, host.firstChild);
+
+      /* 경로 그리기 애니메이션 길이 */
+      try {
+        var len = Math.ceil(line.getTotalLength());
+        if (len) line.style.setProperty("--len", len);
+        else line.classList.remove("draw");
+      } catch (err) { line.classList.remove("draw"); }
+    }
+
+    var ll = function (p) { return p.lat + "," + p.lng; };
+
+    /* 구글맵 임베드 URL — 대중교통(!3e3) + 핀 순서대로 경유지 */
+    function embedUrl(pins) {
+      var n = pins.length;
+      var pb = "!1m" + (4 * n + 2) + "!4m" + (4 * n + 1) + "!3e3";
+      pins.forEach(function (p) { pb += "!4m3!3m2!1d" + p.lat + "!2d" + p.lng; });
+      return "https://www.google.com/maps/embed?origin=mfe&pb=" + pb;
+    }
+
+    /* 구글맵 앱/웹으로 열기 */
+    function dirUrl(pins) {
+      var u = "https://www.google.com/maps/dir/?api=1&travelmode=transit"
+        + "&origin=" + ll(pins[0])
+        + "&destination=" + ll(pins[pins.length - 1]);
+      if (pins.length > 2) u += "&waypoints=" + pins.slice(1, -1).map(ll).join("|");
+      return u;
+    }
+
+    function renderMap(host, day) {
+      var pins = day.pins;
+
+      /* 지도 프레임 */
+      var frame = document.createElement("div");
+      frame.className = "frame";
+      var ifr = document.createElement("iframe");
+      ifr.src = embedUrl(pins);
+      ifr.loading = "lazy";
+      ifr.referrerPolicy = "no-referrer-when-downgrade";
+      ifr.setAttribute("allowfullscreen", "");
+      ifr.title = day.caption[0] + " 동선";
+      var ok = false;
+      ifr.addEventListener("load", function () { ok = true; frame.classList.add("ready"); });
+      frame.appendChild(ifr);
+      host.appendChild(frame);
+
+      /* 번호 범례 */
+      var leg = document.createElement("ol");
+      leg.className = "legend";
+      pins.forEach(function (p) {
+        var li = document.createElement("li");
+        if (p.star) li.className = "star";
+        var no = document.createElement("i");
+        no.textContent = p.n;
+        li.appendChild(no);
+        var nm = document.createElement("b");
+        nm.textContent = p.name;
+        li.appendChild(nm);
+        if (p.sub) {
+          var s = document.createElement("span");
+          s.textContent = p.sub;
+          li.appendChild(s);
+        }
+        var one = document.createElement("a");
+        one.href = "https://www.google.com/maps/search/?api=1&query=" + ll(p);
+        one.target = "_blank";
+        one.rel = "noopener";
+        one.textContent = "↗";
+        one.setAttribute("aria-label", p.name + " 지도에서 보기");
+        li.appendChild(one);
+        leg.appendChild(li);
+      });
+      host.appendChild(leg);
 
       /* 캡션 */
       var cap = document.createElement("div");
@@ -746,31 +871,19 @@
       b.textContent = day.caption[0];
       cap.appendChild(b);
       cap.appendChild(document.createTextNode(day.caption[1]));
-
-      /* 구글맵 딥링크 — 핀 순서를 경유지로 그대로 전달 */
-      var ll = function (p) { return p.lat + "," + p.lng; };
-      var url = "https://www.google.com/maps/dir/?api=1&travelmode=transit"
-        + "&origin=" + ll(pins[0])
-        + "&destination=" + ll(pins[pins.length - 1]);
-      if (pins.length > 2) {
-        url += "&waypoints=" + pins.slice(1, -1).map(ll).join("|");
-      }
       var go = document.createElement("a");
       go.className = "go";
-      go.href = url;
+      go.href = dirUrl(pins);
       go.target = "_blank";
       go.rel = "noopener";
-      go.textContent = "구글맵 ↗";
+      go.textContent = "구글맵에서 열기 ↗";
       cap.appendChild(go);
-
       host.appendChild(cap);
 
-      /* 경로 그리기 애니메이션 길이 */
-      try {
-        var len = Math.ceil(line.getTotalLength());
-        if (len) line.style.setProperty("--len", len);
-        else line.classList.remove("draw");
-      } catch (err) { line.classList.remove("draw"); }
+      /* 구글맵이 막힌 환경이면 직접 그린 지도로 대체 */
+      window.setTimeout(function () {
+        if (!ok) { frame.remove(); renderSvgMap(host, day); }
+      }, 3500);
     }
 
     var maps = document.querySelectorAll(".map[data-day]");
