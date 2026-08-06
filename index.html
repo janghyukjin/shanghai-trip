@@ -276,6 +276,19 @@
     font-family: var(--mono); font-size: 10px;
   }
 
+  /* 지하철역 마커 */
+  .stmark {
+    display: block; width: 11px; height: 11px; border-radius: 50%;
+    background: #fff; border: 3px solid #888; box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0,0,0,.4);
+  }
+  .leaflet-tooltip.stlabel {
+    background: #fff; color: #17120f; border: 0; border-radius: 2px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.25); padding: 2px 6px;
+    font-family: var(--body); font-size: 10.5px; font-weight: 700;
+  }
+  .leaflet-tooltip.stlabel::before { border-top-color: #fff; }
+
   /* 구간 라벨 */
   .leaflet-tooltip.leglabel {
     background: rgba(246,239,226,.92); color: #574636;
@@ -684,7 +697,7 @@
           <ul>
             <li><time>09:30</time><span>여유 기상 <em>오픈런 없음</em></span></li>
             <li><time>11:00</time><span><b>따후춘</b> 생지엔 이른 점심 <em>大壶春 본점 · 미슐랭 빕구르망 · 사천중로 136호 · 숙소에서 도보 12분</em></span></li>
-            <li><time>12:15</time><span>난징동루역에서 2호선 → 11호선 <em>광란로 환승 · 45분</em></span></li>
+            <li><time>12:15</time><span>난징동루역에서 10호선 → 11호선 <em>자오퉁대(交通大学) 환승 · 약 1시간</em></span></li>
             <li><time>13:30</time><span><b>디즈니 도착</b> <em>입장 수속 20~30분</em></span></li>
             <li><time>14:00</time><span><b>주토피아 랜드</b> · 트론 <em>유료 패스를 여기 집중</em></span></li>
             <li><time>17:00</time><span>퍼레이드 · 성 앞 쇼</span></li>
@@ -934,14 +947,14 @@
         ]
       },
       "2": {
-        caption: ["오후 입장", "생지엔 → 난징동루역 도보 8분 → 12:15 출발"],
+        caption: ["10호선 → 11호선", "자오퉁대 환승 · 편도 약 1시간"],
         pins: [
           { n: 1, name: "따후춘 본점", sub: "大壶春 · 사천중로 136호", art: "shengjian",
             desc: "1932년 창업. 2016년부터 4년 연속 미슐랭 빕구르망에 오른 곳이 이 사천중로 본점이다. 국물 없는 청수파 생지엔으로 겉은 바삭, 속은 폭신.",
             lat: 31.2366, lng: 121.4845 },
-          { n: 2, name: "광란로", sub: "广兰路 · 환승", art: "metro",
-            desc: "2호선에서 11호선으로 갈아타는 역. 같은 방향 열차라 환승이 쉽습니다.",
-            lat: 31.2093, lng: 121.6088 },
+          { n: 2, name: "자오퉁대", sub: "交通大学 · 10↔11호선 환승", art: "metro",
+            desc: "난징동루에서 10호선을 타고 여기서 11호선으로 갈아탑니다. 11호선 종점이 디즈니역이라 한 번만 갈아타면 됩니다.",
+            lat: 31.2018, lng: 121.4348 },
           { n: 3, name: "디즈니랜드", sub: "13:30 도착", art: "castle",
             desc: "아시아 최대 규모의 성이 중앙에 선 파크. 오후 입장이라 유료 패스가 필수입니다.",
             lat: 31.1470, lng: 121.6570, star: true }
@@ -986,10 +999,31 @@
       }
     };
 
+    /* 지하철역 좌표(개략) + 노선 색 */
+    var ST = {
+      hongqiaoT1:  { n: "훙차오공항 T1역", lat: 31.1965, lng: 121.3345 },
+      nanjingdong: { n: "난징동루역",     lat: 31.2377, lng: 121.4805 },
+      yuyuan:      { n: "위위안역",       lat: 31.2270, lng: 121.4890 },
+      library:     { n: "상하이도서관역",  lat: 31.2100, lng: 121.4390 },
+      jiaotong:    { n: "자오퉁대역",      lat: 31.2018, lng: 121.4348 },
+      disney:      { n: "디즈니역",        lat: 31.1441, lng: 121.6641 },
+      jingan:      { n: "징안쓰역",        lat: 31.2247, lng: 121.4453 }
+    };
+    var LINE_COLOR = { "2": "#8bc53f", "10": "#c1a4ce", "11": "#7a1f2b" };
+
+    /* 일자별 지하철 구간: 노선 · 탑승역 → 하차역 · 소요시간 */
+    var RAIL = {
+      "1": [{ line: "10", from: "hongqiaoT1", to: "nanjingdong", mins: 40 }],
+      "2": [{ line: "10", from: "nanjingdong", to: "jiaotong", mins: 20 },
+            { line: "11", from: "jiaotong", to: "disney", mins: 40 }],
+      "3": [{ line: "10", from: "yuyuan", to: "library", mins: 25 }],
+      "4": [{ line: "10", from: "jiaotong", to: "hongqiaoT1", mins: 25 }]
+    };
+
     /* 구간 이동수단·소요시간 (핀 n → n+1) */
     var LEGS = {
       "1": ["2호선 40분", "10호선 15분", "10호선 10분", "도보 3분", "도보 10분"],
-      "2": ["2→11호선 45분", "11호선 25분"],
+      "2": ["10호선 20분", "11호선 40분"],
       "3": ["도보 15분", "10호선 25분", "10호선 25분", "지하철 15분"],
       "4": ["도보 10분", "택시 15분", "2호선 30분"]
     };
@@ -1171,6 +1205,23 @@
           color: "#e5372b", weight: 3, opacity: .9,
           dashArray: "8 7", lineCap: "round"
         }).addTo(map);
+
+        /* 지하철 구간 — 노선 색 실선 + 탑승·환승·하차역 표시 */
+        (RAIL[host.getAttribute("data-day")] || []).forEach(function (seg) {
+          var a = ST[seg.from], b = ST[seg.to];
+          if (!a || !b) return;
+          L.polyline([[a.lat, a.lng], [b.lat, b.lng]], {
+            color: LINE_COLOR[seg.line] || "#888", weight: 5, opacity: .75, lineCap: "round"
+          }).addTo(map);
+          [a, b].forEach(function (stn) {
+            L.marker([stn.lat, stn.lng], {
+              icon: L.divIcon({
+                className: "", iconSize: [11, 11], iconAnchor: [6, 6],
+                html: '<b class="stmark" style="border-color:' + (LINE_COLOR[seg.line] || "#888") + '"></b>'
+              })
+            }).addTo(map).bindTooltip(stn.n, { direction: "top", className: "stlabel" });
+          });
+        });
 
         /* 구간 라벨 — 두 핀 사이 중간점에 이동수단·소요시간 */
         var legs = LEGS[host.getAttribute("data-day")] || [];
