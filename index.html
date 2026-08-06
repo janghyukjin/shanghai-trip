@@ -276,6 +276,16 @@
     font-family: var(--mono); font-size: 10px;
   }
 
+  /* 구간 라벨 */
+  .leaflet-tooltip.leglabel {
+    background: rgba(246,239,226,.92); color: #574636;
+    border: 1px solid rgba(154,116,36,.45); border-radius: 999px;
+    box-shadow: none; padding: 1px 7px;
+    font-family: var(--mono); font-size: 9.5px; font-weight: 700;
+    letter-spacing: .02em; white-space: nowrap;
+  }
+  .leaflet-tooltip.leglabel::before { display: none; }
+
   /* 지도 팝업 */
   .leaflet-popup-content-wrapper {
     border-radius: 3px; padding: 2px;
@@ -458,6 +468,34 @@
   .breakdown div b { font-weight: 600; color: var(--fg); font-family: var(--mono); font-size: 12.5px; font-variant-numeric: tabular-nums; }
 
   /* 경고 */
+  /* TIP 드롭다운 */
+  .tip {
+    margin-top: 12px; border: 1px solid var(--line); border-radius: 3px;
+    background: var(--surface);
+  }
+  .tip + .tip { margin-top: 6px; }
+  .tip summary {
+    cursor: pointer; list-style: none; padding: 10px 14px;
+    font-size: 13px; font-weight: 700; color: var(--fg-2);
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .tip summary::-webkit-details-marker { display: none; }
+  .tip summary::before {
+    content: "TIP"; flex: 0 0 auto;
+    font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: .14em;
+    color: var(--bg); background: var(--gold);
+    padding: 1px 5px; border-radius: 2px; position: relative; top: -1px;
+  }
+  .tip summary::after { content: "▾"; margin-left: auto; color: var(--gold); font-size: 10px; }
+  .tip[open] summary::after { content: "▴"; }
+  .tip[open] summary { color: var(--fg); border-bottom: 1px solid var(--line); }
+  .tip p {
+    margin: 0; padding: 12px 14px 13px;
+    font-size: 13.5px; line-height: 1.7; color: var(--fg-2); max-width: none;
+  }
+  .tip p b { color: var(--fg); }
+  .tip summary:hover { color: var(--fg); }
+
   .warn {
     border-left: 3px solid var(--vermilion); background: rgba(229,55,43,.09);
     padding: 16px 20px; border-radius: 0 3px 3px 0; font-size: 14.5px; color: var(--fg-2);
@@ -645,8 +683,8 @@
           <span class="when">10월 3일 · 토 · 오후 입장</span>
           <ul>
             <li><time>09:30</time><span>여유 기상 <em>오픈런 없음</em></span></li>
-            <li><time>11:00</time><span><b>따후춘</b> 생지엔 이른 점심 <em>大壶春 · 미슐랭 빕구르망 · 사천중로 136호</em></span></li>
-            <li><time>12:15</time><span>2호선 → 11호선 <em>광란로 환승</em></span></li>
+            <li><time>11:00</time><span><b>따후춘</b> 생지엔 이른 점심 <em>大壶春 · 미슐랭 빕구르망 · 사천중로 136호 · 난징동루역 도보 5분</em></span></li>
+            <li><time>12:15</time><span>난징동루역에서 2호선 → 11호선 <em>광란로 환승 · 45분</em></span></li>
             <li><time>13:30</time><span><b>디즈니 도착</b> <em>입장 수속 20~30분</em></span></li>
             <li><time>14:00</time><span><b>주토피아 랜드</b> · 트론 <em>유료 패스를 여기 집중</em></span></li>
             <li><time>17:00</time><span>퍼레이드 · 성 앞 쇼</span></li>
@@ -655,29 +693,33 @@
             <li><time>23:00</time><span><b>메이투안 배달</b> 야식 <em>美团外卖 · 알리페이 미니앱으로 주문</em></span></li>
           </ul>
           <div class="map" data-day="2"></div>
-          <div class="tipbox">
-            <b>확정 · 10월 3일(토) 오후 입장</b> — 개장 08:30, 폐장 21:00~21:30이라 13:30 입장이면 7시간 반을 쓴다.
+          <details class="tip">
+            <summary>확정 · 10월 3일(토) 오후 입장</summary>
+            <p>개장 08:30, 폐장 21:00~21:30이라 13:30 입장이면 7시간 반을 쓴다.
             <b>국경절 한정 성 판타지 쇼(城堡幻影秀)가 10월 1~3일 3일간만</b> 열리는데 이날이 마지막 날이라 볼 수 있다.
-            요일별 인파 차이는 국경절엔 무의미하다 — 10/1이 압도적 피크였고 귀성은 10/7~8이라 3일과 4일은 같은 고원 구간.
-          </div>
-          <div class="tipbox">
-            <b>얼마 드나 · 셋이 68만원</b> — 티켓은 6단계 요금제 중 최상단 <b>특별성수기 ¥799</b>(1인, 약 15만원),
+            요일별 인파 차이는 국경절엔 무의미하다 — 10/1이 압도적 피크였고 귀성은 10/7~8이라 3일과 4일은 같은 고원 구간.</p>
+          </details>
+          <details class="tip">
+            <summary>얼마 드나 · 셋이 68만원</summary>
+            <p>티켓은 6단계 요금제 중 최상단 <b>특별성수기 ¥799</b>(1인, 약 15만원),
             여기에 <b>케어프리 3종 패스 ¥395</b>(약 7.5만원). 1인 ¥1,194, 셋이 <b>¥3,582 ≈ 68만원</b>.
-            6종 패스 조합(91만원)은 3~4개만 탈 거면 과투자다. 3세 미만 무료, 아동·노인 약 25% 할인.
-          </div>
-          <div class="tipbox">
-            <b>패스는 개수가 아니라 선택권을 사는 것</b> — 국경절 인기 어트랙션 대기는 <b>120~180분</b>
+            6종 패스 조합(91만원)은 3~4개만 탈 거면 과투자다. 3세 미만 무료, 아동·노인 약 25% 할인.</p>
+          </details>
+          <details class="tip">
+            <summary>패스는 개수가 아니라 선택권을 사는 것</summary>
+            <p>국경절 인기 어트랙션 대기는 <b>120~180분</b>
             (평시 광산열차 83분 · 주토피아 71분 · 트론 59분 · 소어링 54분). 현지 공략글 결론은 "급행권 없으면 하루 2~3개".
             패스 없이도 2~3개는 타지만 줄 짧은 건 인기 없는 것들이라 트론·주토피아는 못 타고 끝날 수 있다.
             <b>주의</b>: 전용 입구로 짧은 줄을 서는 방식이라 완전 무대기는 아니고, 어트랙션당 1회만 쓴다.
             세트는 항목이 고정이라 <b>주토피아가 빠져 있을 수 있으니</b> 앱에서 당일 구성을 확인하고,
-            빠져 있으면 개별(¥150~180)로 트론·주토피아·소어링을 직접 잡아라.
-          </div>
-          <div class="tipbox">
-            <b>배달은 파크 안으로 못 와</b> — 디즈니는 배달 기사가 못 들어가고 게이트 수령도 사실상 불가야.
+            빠져 있으면 개별(¥150~180)로 트론·주토피아·소어링을 직접 잡아라.</p>
+          </details>
+          <details class="tip">
+            <summary>배달은 파크 안으로 못 와</summary>
+            <p>디즈니는 배달 기사가 못 들어가고 게이트 수령도 사실상 불가야.
             그래서 저녁은 파크 안에서 간단히 먹고, <b>숙소 돌아와서 메이투안(美团外卖)으로 야식</b>을 시키는 구성.
-            알리페이 안의 美团 미니앱을 쓰면 중국 번호나 별도 앱 없이 주문돼. 주소는 호텔 프론트에서 중국어로 받아두면 편해.
-          </div>
+            알리페이 안의 美团 미니앱을 쓰면 중국 번호나 별도 앱 없이 주문돼. 주소는 호텔 프론트에서 중국어로 받아두면 편해.</p>
+          </details>
         </div>
       </div>
 
@@ -792,18 +834,20 @@
         </div>
       </div>
     </div>
-    <div class="tipbox" style="margin-top:14px;">
-      <b>외국인 투숙 거부를 피하는 게 제일 중요해</b> — 제도상 금지지만 실무 미비로 실제 발생해.
+    <details class="tip" style="margin-top:14px;">
+            <summary>외국인 투숙 거부를 피하는 게 제일 중요해</summary>
+            <p>제도상 금지지만 실무 미비로 실제 발생해.
       ① 국제 체인이나 대형 중국 체인만 고르기 ② 트립닷컴을 <b>한국어·영어 화면</b>으로 검색
       (중문 화면의 싼 방은 내국인 전용일 수 있어) ③ <b>仅接待中国大陆居民</b> 표기 있으면 제외
       ④ 예약 후 호텔에 확인하고 답변 스크린샷 보관.
-      그리고 <b>친구 방은 친구 본인 영문명(여권과 동일)으로 예약</b> — 객실마다 여권 등록을 하니까 이름 다르면 체크인에서 막혀.
-    </div>
-    <div class="tipbox">
-      <b>예약은 가격보다 재고 싸움</b> — 같은 호텔에서 2방을 동시에 잡는 게 병목이고,
+      그리고 <b>친구 방은 친구 본인 영문명(여권과 동일)으로 예약</b> — 객실마다 여권 등록을 하니까 이름 다르면 체크인에서 막혀.</p>
+          </details>
+    <details class="tip">
+            <summary>예약은 가격보다 재고 싸움</summary>
+            <p>같은 호텔에서 2방을 동시에 잡는 게 병목이고,
       9월 중순 넘으면 "가격은 있는데 2방이 없는" 상황이 흔해. 지금이 마지막 여유 구간.
-      1순위에 <b>무료취소 + 현장결제</b>로 2방 걸고, 백업 1곳에도 2방 홀드해 둬(국경절엔 호텔 측 오버부킹 취소가 실제로 나).
-    </div>
+      1순위에 <b>무료취소 + 현장결제</b>로 2방 걸고, 백업 1곳에도 2방 홀드해 둬(국경절엔 호텔 측 오버부킹 취소가 실제로 나).</p>
+          </details>
   </section>
 
   <section class="rv">
@@ -931,6 +975,14 @@
             lat: 31.1979, lng: 121.3300 }
         ]
       }
+    };
+
+    /* 구간 이동수단·소요시간 (핀 n → n+1) */
+    var LEGS = {
+      "1": ["2호선 40분", "10호선 15분", "10호선 10분", "도보 3분", "도보 10분"],
+      "2": ["2→11호선 45분", "11호선 25분"],
+      "3": ["도보 15분", "10호선 25분", "10호선 25분", "지하철 15분"],
+      "4": ["도보 10분", "택시 15분", "2호선 30분"]
     };
 
     /* 명소 사진 — Wikimedia Commons, 페이지 하단에 출처 표기 */
@@ -1110,6 +1162,19 @@
           color: "#e5372b", weight: 3, opacity: .9,
           dashArray: "8 7", lineCap: "round"
         }).addTo(map);
+
+        /* 구간 라벨 — 두 핀 사이 중간점에 이동수단·소요시간 */
+        var legs = LEGS[host.getAttribute("data-day")] || [];
+        legs.forEach(function (txt, i) {
+          if (!pins[i + 1]) return;
+          var mid = [(pins[i].lat + pins[i + 1].lat) / 2, (pins[i].lng + pins[i + 1].lng) / 2];
+          L.marker(mid, {
+            interactive: false,
+            icon: L.divIcon({ className: "", html: "", iconSize: [0, 0] })
+          }).addTo(map).bindTooltip(txt, {
+            permanent: true, direction: "center", className: "leglabel", opacity: 1
+          });
+        });
 
         pins.forEach(function (p) {
           var mk = L.marker([p.lat, p.lng], {
