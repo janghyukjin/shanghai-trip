@@ -388,6 +388,19 @@
     .map .spots { grid-template-columns: 1fr; }
   }
 
+  .map .amap {
+    padding: 9px 14px; border-top: 1px solid var(--line);
+    display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em;
+  }
+  .map .amap b { color: var(--celadon); font-weight: 700; letter-spacing: .1em; margin-right: 2px; }
+  .map .amap a {
+    text-decoration: none; color: var(--fg-2); border: 1px solid var(--line); border-radius: 999px;
+    padding: 3px 9px; white-space: nowrap; transition: border-color .18s, color .18s;
+  }
+  .map .amap a:hover, .map .amap a:focus-visible { color: var(--fg); border-color: var(--gold); }
+  .leaflet-popup-content .amaplink { display: inline-block; margin-top: 6px; font-weight: 700; }
+
   .map .river {
     fill: none; stroke: rgba(62,140,122,.24); stroke-width: 3.6;
     stroke-linecap: round; stroke-linejoin: round;
@@ -679,62 +692,108 @@
           <h3>도착 &amp; 와이탄 야경</h3>
           <span class="when">10월 2일 · 금</span>
           <ul>
-            <li><time>14:30</time><span>시내 이동 후 체크인</span></li>
-            <li><time>16:00</time><span><b>톈쯔팡</b> 또는 신톈디</span></li>
-            <li><time>18:00</time><span><b>챠지</b> 밀크티 <em>CHAGEE 霸王茶姬 · 재스민 밀크티</em></span></li>
-            <li><time>19:00</time><span><b>헌지우이치엔</b> 양꼬치 <em>很久以前羊肉串 · 제일백화점 6층 · 밤엔 대기 김</em></span></li>
-            <li><time>20:30</time><span><b>와이탄 야경</b> <em>도보 10분 · 조명 피크</em></span></li>
+            <li><time>12:55</time><span><b>홍차오 T1 도착</b> <em>10호선 난징동루역 하차 후 도보 12분 · 또는 2호선 1정거장 인민광장역</em></span></li>
+            <li><time>14:30</time><span><b>콘래드 체크인</b> <em>上海康莱德酒店 · 난징동루 789호</em></span></li>
+            <li><time>15:00</time><span><b>라이라이</b> 소룡포 <em>莱莱小笼 · 톈진루 504호 · 숙소 도보 5분 · 15:00 재오픈에 맞춰</em></span></li>
+            <li><time>16:00</time><span>난징동루 보행가 산책 <em>동쪽으로 천천히 · 챠지(霸王茶姬) 밀크티 한 잔</em></span></li>
+            <li><time>18:00</time><span><b>헌지우이치엔</b> 양꼬치 <em>很久以前羊肉串 · 제일백화점 6층 · 숙소 맞은편 · 18시 입장이면 대기 거의 없음</em></span></li>
+            <li><time>19:30</time><span><b>와이탄 야경</b> <em>도보 15분 · 동방명주 조명 정면</em></span></li>
           </ul>
           <div class="map" data-day="1"></div>
+          <details class="tip">
+            <summary>라이라이는 15시 재오픈에 맞춰 가</summary>
+            <p>영업 <b>08:00~14:00 · 15:00~20:00</b>. 순게살 소룡포(纯蟹粉小笼)가 시그니처고 10월이 게 제철이라 줄이 가장 긴 때다.
+            체크인 끝내고 15시 재오픈 첫 팀으로 들어가면 오전 줄을 피한다. 미슐랭 빕구르망, 인당 ¥50~100.
+            高德에는 <b>莱莱小笼</b>으로 검색.</p>
+          </details>
+          <details class="tip">
+            <summary>동방명주는 강 건너에서 보는 게 정석</summary>
+            <p>올라가는 건 국경절 대기가 심해서 권하지 않는다. 와이탄 강변에서 보는 조명이 대표 장면이고,
+            전망대를 가고 싶으면 2일차 밤 <b>상하이타워</b> 선택지가 더 낫다.
+            낮에 와이탄까지 갔다가 양꼬치 먹고 다시 가면 1km를 두 번 왕복하니, 저녁 먹고 한 번만 가자.</p>
+          </details>
+        </div>
+      </div>
+
+      <div class="d">
+        <span class="no">其二</span>
+        <div>
+          <h3>해가대원 · 우캉루 · 임시정부 · 예원 야경</h3>
+          <span class="when">10월 3일 · 토</span>
+          <ul>
+            <li><time>11:00</time><span><b>해가대원</b> 게살면 오픈런 <em>蟹家大院 · 광둥루 59호 · 숙소 도보 15분 · 10분 일찍 가서 첫 팀</em></span></li>
+            <li><time>12:15</time><span>난징동루역 10호선 → 상하이도서관역 <em>15분 · 도보 5분</em></span></li>
+            <li><time>12:45</time><span><b>우캉맨션</b> → 우캉루 산책 <em>武康大楼 · 다리미 빌딩 · 북쪽으로 플라타너스 길</em></span></li>
+            <li><time>13:15</time><span><b>섭듀드</b> 쇼핑 · 카페 <em>Subdued · 우캉루 378호 武康庭 · 옆에 브랜디 멜빌(안푸루 322호) · HARMAY</em></span></li>
+            <li><time>15:05</time><span>상하이도서관역 10호선 → 신톈디역 <em>12분 · 도보 8분</em></span></li>
+            <li><time>15:30</time><span><b>대한민국 임시정부 청사</b> <em>마당로 306롱 4호 · ¥20 · 입장 마감 16:30 · 관람 40분</em></span></li>
+            <li><time>16:20</time><span>신톈디역 10호선 → 위위안역 <em>2정거장</em></span></li>
+            <li><time>16:40</time><span><b>예원</b> 상가 구역 산책 <em>정원 입장 안 함 · 구곡교·호심정 · 18시 점등 야경</em></span></li>
+            <li><time>19:30</time><span><b>성융싱</b> 베이징덕 <em>晟永兴 · 광둥루 20호 외탄5호 5층 · 미슐랭 1스타 · 예약 완료</em></span></li>
+            <li><time>21:00</time><span>와이탄 강변 산책 <em>바로 앞 · 또는 상하이타워 전망대</em></span></li>
+          </ul>
+          <div class="map" data-day="2"></div>
+          <details class="tip">
+            <summary>이날 시간을 쥐는 건 임시정부 청사 16:30 마감</summary>
+            <p><b>매주 월요일 휴관</b>이라 귀국일(10/5)엔 못 가고, 디즈니 날을 빼면 이날이 유일한 창이다.
+            운영 <b>09:00~17:00</b>(입장 마감 16:30), <b>11:30~13:30 점심 휴관</b>. 우캉루에서 15:05엔 출발해야 15:30 입장이 된다.
+            입장료 ¥20, 내부 사진 촬영 금지. 1926~1932년 임시정부가 쓴 석고문 3층 건물을 1993년 복원했다.
+            마당로 306롱은 안쪽 골목이라 高德에 <b>大韩民国临时政府旧址</b>로 검색해서 들어가.</p>
+          </details>
+          <details class="tip">
+            <summary>예원은 저녁엔 밖에서 야경만</summary>
+            <p>유료 정원(¥40)은 <b>09:00~16:30, 16:00 입장 마감</b>이라 저녁엔 못 들어간다.
+            흔히 "예원 야경"으로 도는 구곡교·호심정 조명 사진은 정원 밖 <b>豫园商城</b> 무료 구역이라 저녁에 가도 그대로 본다.
+            국경절엔 좁은 정원에 인파가 꽉 차서 정원 감상이 잘 안 되니 입장은 뺐다. 성융싱까지 도보 15분.</p>
+          </details>
+          <details class="tip">
+            <summary>해가대원 가격은 메뉴판 먼저</summary>
+            <p>외탄점(十里洋场)은 蟹黄金 한 그릇 ¥360, 인당 ¥300대라는 최근 정보가 있어 예전에 적어둔 ¥72와 다르다.
+            게살면 두 종류(蟹黄金·蟹肉肉)만 파는 집이라 가격 보고 蟹肉肉로 가거나 건너뛰어도 된다. 11:00 오픈, 예약 채널 없음.</p>
+          </details>
+          <details class="tip">
+            <summary>섭듀드 · 안푸루 쇼핑 블록</summary>
+            <p>이탈리아 영 여성복 브랜드 <b>Subdued</b>가 2024년 9월 우캉루 378호 武康庭에 아시아 첫 매장을 열었다. 브랜디 멜빌과 같은 포지션(베이직·레트로), 상의 ¥200~300대, 한국엔 매장 없음.
+            도보 5분 거리 안푸루 322호에 <b>브랜디 멜빌</b>(국경절엔 입장 줄), 뷰티 편집숍 <b>HARMAY 话梅</b>가 있고 카페는 武康庭·안푸루에 몰려 있다. 13:15~15:00 한 블록으로.</p>
+          </details>
         </div>
       </div>
 
       <div class="d main">
-        <span class="no">其二</span>
+        <span class="no">其三</span>
         <div>
           <h3>상하이 디즈니랜드</h3>
-          <span class="when">10월 3일 · 토 · 오후 입장</span>
+          <span class="when">10월 4일 · 일 · 오후 입장</span>
           <ul>
             <li><time>09:30</time><span>여유 기상 <em>오픈런 없음</em></span></li>
-            <li><time>11:00</time><span><b>따후춘</b> 생지엔 이른 점심 <em>大壶春 본점 · 미슐랭 빕구르망 · 사천중로 136호 · 숙소에서 도보 12분</em></span></li>
-            <li><time>12:15</time><span>난징동루역에서 10호선 → 11호선 <em>자오퉁대(交通大学) 환승 · 약 1시간</em></span></li>
-            <li><time>13:30</time><span><b>디즈니 도착</b> <em>입장 수속 20~30분</em></span></li>
-            <li><time>14:00</time><span><b>주토피아 랜드</b> · 트론 <em>유료 패스를 여기 집중</em></span></li>
+            <li><time>11:00</time><span>따후춘 생지엔 <em>선택 · 大壶春 본점 · 사천중로 136호 · 숙소 도보 15분 · 빨리 먹고 갈 곳</em></span></li>
+            <li><time>12:15</time><span>난징동루역 10호선 → 11호선 <em>자오퉁대(交通大学) 환승 · 디즈니역 종점 · 약 1시간</em></span></li>
+            <li><time>13:30</time><span><b>디즈니 도착</b> <em>정문에서 여권 + Klook 예약으로 실물 티켓 교환 · 앱에 티켓 연동</em></span></li>
+            <li><time>14:00</time><span><b>트론</b> · 주토피아 <em>3항 패스 = 트론·雷鸣山漂流·버즈 라이트이어 · 주토피아는 앱 개별</em></span></li>
             <li><time>17:00</time><span>퍼레이드 · 성 앞 쇼</span></li>
             <li><time>18:30</time><span>파크 내 저녁 <em>간단히 · 줄 짧은 곳</em></span></li>
-            <li><time>20:00</time><span>불꽃놀이 → 숙소 23시</span></li>
+            <li><time>20:00</time><span>불꽃놀이 → 숙소 23시 <em>11호선 → 쉬자후이 환승 1호선 → 인민광장 · 약 1시간 10분</em></span></li>
             <li><time>23:00</time><span><b>메이투안 배달</b> 야식 <em>美团外卖 · 알리페이 미니앱으로 주문</em></span></li>
           </ul>
-          <div class="map" data-day="2"></div>
+          <div class="map" data-day="3"></div>
           <details class="tip">
-            <summary>따후춘은 본점으로 가야 미슐랭이야</summary>
-            <p><b>빕구르망에 오른 건 사천중로 136호 본점</b>이다(2016년부터 4년 연속).
-            분점은 등재 이력이 확인되지 않으니, 미슐랭이 목적이면 본점으로 가야 해.
-            <b>동선 손실은 생각보다 작아</b> — 숙소에서 도보 12분, 먹고 난징동루역까지 되돌아 8분,
-            합쳐서 15분 정도야. 11시에 먹고 12:15에 출발하면 충분히 커버돼.<br><br>
-            가까운 분점을 원하면 <b>저장중로 117호점</b>(난징동루 보행가 옆, 숙소 도보 3분)이나
-            <b>云南南路 71호점</b>(8호선 大世界역)이 있어. 맛은 같은 브랜드지만 미슐랭 지점은 아니야.</p>
+            <summary>예약 완료 · Klook 1일 티켓 + DPA 3항 어드벤처 A</summary>
+            <p>Klook 예약번호 <b>BWT803489</b>, 10/4 성인권, 1인 ₩229,632(공홈 ¥1,184보다 약 7천원 저렴). 취소 가능 기한 <b>9/27 00:00 상하이 시간</b>.
+            당일은 <b>정문에서 여권 원본 + 예약 내역</b>을 보여 실물 티켓으로 바꾸고, QR이 하나라 함께 입장한다.
+            입장 후 공식 앱에 티켓을 연동하면 尊享卡(DPA) QR이 뜬다. 어트랙션당 1회, 시간대 예약 없이 운영시간 내 아무 때나 전용 입구.</p>
           </details>
           <details class="tip">
-            <summary>확정 · 10월 3일(토) 오후 입장</summary>
+            <summary>확정 · 10월 4일(일) 오후 입장</summary>
             <p>개장 08:30, 폐장 21:00~21:30이라 13:30 입장이면 7시간 반을 쓴다.
-            <b>국경절 한정 성 판타지 쇼(城堡幻影秀)가 10월 1~3일 3일간만</b> 열리는데 이날이 마지막 날이라 볼 수 있다.
-            요일별 인파 차이는 국경절엔 무의미하다 — 10/1이 압도적 피크였고 귀성은 10/7~8이라 3일과 4일은 같은 고원 구간.</p>
+            <b>국경절 한정 성 판타지 쇼(城堡幻影秀)는 10월 1~3일 3일간만</b> 열려서 10월 4일에는 볼 수 없다.
+            대신 <b>일요일이 토요일보다 한산하다</b> — 10/1이 압도적 피크였고 귀성은 10/7~8이라 3·4일은 같은 고원 구간이지만,
+            최근 2년 대기 기록으로는 일요일 쪽이 일관되게 짧았다. 쇼 한 편과 대기 시간을 맞바꾼 선택.</p>
           </details>
           <details class="tip">
-            <summary>얼마 드나 · 셋이 68만원</summary>
-            <p>티켓은 6단계 요금제 중 최상단 <b>특별성수기 ¥799</b>(1인, 약 15만원),
-            여기에 <b>케어프리 3종 패스 ¥395</b>(약 7.5만원). 1인 ¥1,194, 셋이 <b>¥3,582 ≈ 68만원</b>.
-            6종 패스 조합(91만원)은 3~4개만 탈 거면 과투자다. 3세 미만 무료, 아동·노인 약 25% 할인.</p>
-          </details>
-          <details class="tip">
-            <summary>패스는 개수가 아니라 선택권을 사는 것</summary>
-            <p>국경절 인기 어트랙션 대기는 <b>120~180분</b>
-            (평시 광산열차 83분 · 주토피아 71분 · 트론 59분 · 소어링 54분). 현지 공략글 결론은 "급행권 없으면 하루 2~3개".
-            패스 없이도 2~3개는 타지만 줄 짧은 건 인기 없는 것들이라 트론·주토피아는 못 타고 끝날 수 있다.
-            <b>주의</b>: 전용 입구로 짧은 줄을 서는 방식이라 완전 무대기는 아니고, 어트랙션당 1회만 쓴다.
-            세트는 항목이 고정이라 <b>주토피아가 빠져 있을 수 있으니</b> 앱에서 당일 구성을 확인하고,
-            빠져 있으면 개별(¥150~180)로 트론·주토피아·소어링을 직접 잡아라.</p>
+            <summary>3항 패스 구성과 주토피아</summary>
+            <p>어드벤처 A는 <b>트론(创极速光轮) · 雷鸣山漂流 · 버즈 라이트이어</b>. 정비 중이면 캐리비안의 해적으로 대체된다.
+            <b>주토피아는 어느 3항에도 없다</b> — 입장하자마자 앱에서 개별 DPA(¥150~350)를 잡아라. 국경절 인기 어트랙션 대기는 120~180분이라
+            패스 없는 건 줄 짧은 것만 고른다. 전용 입구로 짧은 줄을 서는 방식이라 완전 무대기는 아니다.</p>
           </details>
           <details class="tip">
             <summary>배달은 파크 안으로 못 와</summary>
@@ -746,51 +805,24 @@
       </div>
 
       <div class="d">
-        <span class="no">其三</span>
-        <div>
-          <h3>예원 &amp; 옛 조계지</h3>
-          <span class="when">10월 4일 · 일</span>
-          <ul>
-            <li><time>09:30</time><span><b>예원</b> · 난샹만두 소룡포</span></li>
-            <li><time>11:30</time><span><b>해가대원</b> 게살면 <em>Cejerdary 蟹家大院 · 광둥루 59호 · ¥72</em></span></li>
-            <li><time>13:30</time><span><b>대한민국 임시정부 청사</b> <em>마당로 306롱 4호 · ¥20 · 관람 40분</em></span></li>
-            <li><time>15:30</time><span><b>우캉맨션</b> <em>武康大楼 · 다리미 빌딩</em></span></li>
-            <li><time>16:00</time><span><b>우캉루</b> 산책 <em>플라타너스 길 · 사진 최고 구역</em></span></li>
-            <li><time>19:00</time><span><b>성융싱</b> 베이징덕 <em>Sheng Yong Xing 晟永兴 · 미슐랭 1스타 · 광둥루 20호 · 예약 필수</em></span></li>
-            <li><time>21:00</time><span>와이탄 강변 산책 <em>또는 상하이타워 전망대</em></span></li>
-          </ul>
-          <details class="tip">
-            <summary>임시정부 청사는 일요일에 열고 월요일에 닫는다</summary>
-            <p><b>매주 월요일 휴관</b>이라 귀국일(10/5 월)에는 못 간다. 3일차(10/4 일)에 넣는 게 유일한 창이야.
-            운영 <b>09:00~17:00</b>(마지막 입장 16:30)에 <b>11:30~13:30 점심 휴관</b>이 있으니,
-            오전에 가려면 11시 전에 들어가야 하고 아니면 13:30 재개장에 맞추는 게 안전해.
-            입장료 <b>¥20</b>, 내부 <b>사진 촬영 금지</b>. 1993년에 당시 모습으로 복원한 석고문 3층 건물이고
-            황푸구 문물보호단위 제174호다. 관람은 40분이면 충분해.</p>
-          </details>
-          <details class="tip">
-            <summary>가는 법 · 신톈디역에서 도보 8분</summary>
-            <p>해가대원(광둥루)에서 <b>난징동루역 10호선</b>을 타고 <b>신톈디역</b>에서 내려 도보 8분.
-            마당로 306롱은 안쪽 골목이라 高德地图에 <b>大韩民国临时政府旧址</b>로 검색해서 들어가.
-            나오면 다시 10호선으로 상하이도서관역까지 12분, 우캉맨션까지 도보 5분이라 서쪽 동선이 그대로 이어져.
-            13호선 마당로역도 가깝지만 앞뒤 동선이 10호선이라 갈아탈 이유는 없어.</p>
-          </details>
-          <div class="map" data-day="3"></div>
-        </div>
-      </div>
-
-      <div class="d">
         <span class="no">其四</span>
         <div>
           <h3>오전 마무리 &amp; 귀국</h3>
           <span class="when">10월 5일 · 월</span>
           <ul>
-            <li><time>09:00</time><span><b>징안쓰</b> <em>静安寺</em></span></li>
-            <li><time>10:15</time><span>스타벅스 로스터리 <em>기념품 · 난징시루</em></span></li>
-            <li><time>11:30</time><span><b>올드 제시</b> 홍소육 <em>Old Jesse 老吉士 · 톈핑루 · 미슐랭 · 예약 필수</em></span></li>
-            <li><time>13:00</time><span>공항 이동 <em>톈핑루에서 홍차오 30분</em></span></li>
-            <li><time>14:45</time><span><b>공항 도착</b> (2시간 반 전)</span></li>
+            <li><time>09:00</time><span><b>징안쓰</b> <em>静安寺 · 인민광장 2호선 → 징안쓰역 2정거장</em></span></li>
+            <li><time>10:00</time><span><b>囍方</b> <em>FZ·H囍方 · 富民路255弄 小区店 · 징안쓰에서 도보 13분</em></span></li>
+            <li><time>10:40</time><span>스타벅스 로스터리 <em>기념품 · 난징시루 789호 · 도보 12분 또는 택시 5분</em></span></li>
+            <li><time>11:30</time><span><b>올드 제시</b> 홍소육 <em>Old Jesse 老吉士 · 톈핑루 41호 · 미슐랭 · 예약 필수 · DiDi 15분</em></span></li>
+            <li><time>13:00</time><span>공항 이동 <em>자오퉁대역 10호선 → 홍차오 T1역 25분</em></span></li>
+            <li><time>14:45</time><span><b>공항 도착</b> (2시간 반 전) <em>17:10 이륙</em></span></li>
           </ul>
           <div class="map" data-day="4"></div>
+          <details class="tip">
+            <summary>올드 제시는 예약 없으면 못 들어간다</summary>
+            <p>테이블 7개짜리 상하이 요리 노포. 전화 <b>021-6282-9260</b>, 영업 11:30~14:30 · 17:00~23:00.
+            13:00 공항 출발 기준으로 <b>11:30 첫 타임</b>이 맞고, 성융싱처럼 콘래드 컨시어지(ConradShanghai.info@ConradHotels.com)에 부탁하는 게 가장 쉽다.</p>
+          </details>
         </div>
       </div>
     </div>
@@ -799,93 +831,51 @@
   <section class="rv">
     <div class="warn">
       <span class="lbl">국경절 주의</span>
-      10/1–10/7이 중국 최대 연휴야. 디즈니 대기 <b>어트랙션당 2~3시간</b>이 기본이라
-      <b>날짜지정 티켓 + Premier Access</b>가 사실상 필수. 없으면 하루에 다섯 개도 못 타.
+      10/1–10/7이 중국 최대 연휴야. 디즈니는 <b>티켓 + DPA 확보 완료</b>, 성융싱은 <b>19:30 예약 완료</b>.
+      남은 예약은 <b>올드 제시</b> 하나고, 나머지 식당은 전부 현장 줄이라 해가대원은 오픈런, 라이라이는 15시 재오픈에 맞춘다.
     </div>
   </section>
 
   <section id="prep" class="rv">
     <h2>지금 할 것 <span class="han">出發前</span></h2>
     <div class="must">
-      <div class="m"><span class="dot"></span><span class="txt"><b>디즈니 티켓 10/3 날짜지정 3장</b> <span>— ¥799씩. 조기 매진되니 지금 바로</span></span></div>
-      <div class="m"><span class="dot"></span><span class="txt"><b>케어프리 3종 패스 3개</b> <span>— ¥395씩. 앱에서 포함 항목 확인 후 사전 구매, 주토피아 없으면 당일 개별로</span></span></div>
-      <div class="m"><span class="dot"></span><span class="txt"><b>디즈니 앱 준비</b> <span>— 중국 본토 버전 · 계정 생성 · 티켓 연동 · 결제수단 연결까지 출발 전에</span></span></div>
-      <div class="m"><span class="dot"></span><span class="txt"><b>성융싱 예약</b> <span>— Sheng Yong Xing, 1일차 저녁. 미슐랭 1스타라 연휴엔 자리 없음</span></span></div>
-      <div class="m"><span class="dot"></span><span class="txt"><b>해가대원 예약</b> <span>— Cejerdary, 3일차 점심 게살면. 대기 길어 예약 권장</span></span></div>
-      <div class="m"><span class="dot"></span><span class="txt"><b>알리페이 / 위챗페이</b> <span>— 해외카드 등록 + 테스트 결제. 현금 안 받음</span></span></div>
+      <div class="m done"><span class="dot"></span><span class="txt"><b>디즈니 티켓 + DPA 3항A</b> <span>— Klook 예약 완료 BWT803489 · 당일 정문에서 여권 + 예약내역으로 실물 교환</span></span></div>
+      <div class="m done"><span class="dot"></span><span class="txt"><b>성융싱 예약</b> <span>— 10/3 19:30 완료</span></span></div>
+      <div class="m done"><span class="dot"></span><span class="txt"><b>숙소</b> <span>— 콘래드 상하이 더블룸 2개 확정</span></span></div>
+      <div class="m"><span class="dot"></span><span class="txt"><b>올드 제시 예약</b> <span>— 10/5 11:30 · 021-6282-9260 · 콘래드 컨시어지 메일로</span></span></div>
+      <div class="m"><span class="dot"></span><span class="txt"><b>디즈니 앱 계정</b> <span>— 중국 본토 버전 · 휴대전화 인증이라 출국 전에 생성 · 티켓 연동 · 결제수단 연결</span></span></div>
+      <div class="m"><span class="dot"></span><span class="txt"><b>알리페이 / 위챗페이</b> <span>— 해외카드 등록 + 테스트 결제. 현금 안 받음 · 高德 로그인도 알리페이 계정으로</span></span></div>
+      <div class="m"><span class="dot"></span><span class="txt"><b>高德地图 즐겨찾기</b> <span>— 아래 지도마다 붙은 高德 버튼으로 장소를 열어 ☆收藏 · 폴더 D1~D4</span></span></div>
       <div class="m"><span class="dot"></span><span class="txt"><b>VPN 설치</b> <span>— 한국에서 미리. 중국에선 설치 막힘</span></span></div>
-      <div class="m"><span class="dot"></span><span class="txt"><b>전자입국신고서 QR</b> <span>— s.nia.gov.cn에서 작성. 종이 신고서는 폐지됐고 <b>QR 유효 72시간</b>이라 출발 전날에 3명 각각</span></span></div>
+      <div class="m"><span class="dot"></span><span class="txt"><b>전자입국신고서 QR</b> <span>— s.nia.gov.cn에서 작성. <b>QR 유효 72시간</b>이라 10/1에 3명 각각</span></span></div>
       <div class="m"><span class="dot"></span><span class="txt"><b>eSIM 개통</b> <span>— 중국용. 한국에서 설치하고 현지 도착 후 활성화</span></span></div>
-      <div class="m"><span class="dot"></span><span class="txt"><b>숙소 예약 (2방)</b> <span>— 더블룸 2개, 2호선 라인 · 무료취소로 걸어두고 친구 방은 친구 영문명으로</span></span></div>
-      <div class="m"><span class="dot"></span><span class="txt"><b>현지 앱 · eSIM</b> <span>— 高德地图 · DiDi · 大众点评</span></span></div>
-      <div class="m"><span class="dot"></span><span class="txt"><b>배달앱 미리 테스트</b> <span>— 알리페이 안 美团(메이투안) 미니앱. 한국에서 화면 한번 열어보고 결제수단 연결</span></span></div>
+      <div class="m"><span class="dot"></span><span class="txt"><b>현지 앱</b> <span>— 高德地图 · DiDi · 大众点评 · 알리페이 안 美团 미니앱 결제수단 연결</span></span></div>
     </div>
   </section>
 
   <section id="hotel" class="rv">
     <h2>숙소 <span class="han">住宿</span></h2>
-    <div class="warn" style="margin-bottom:16px;">
-      <span class="lbl">전제</span>
-      <b>더블룸(大床房) 2개</b>를 각각 예약해서 따로 쓴다. 한 방은 커플, 한 방은 친구 혼자.
-      중국 호텔은 1인이 묵어도 요금이 같으니 총액은 방값 × 2.
-      목표는 <b>1인 3박 50만원 이하</b> = 방당 1박 25만원 이하(국경절 기준).
-    </div>
     <div class="days">
       <div class="d main">
-        <span class="no">本命</span>
+        <span class="no">確定</span>
         <div>
-          <h3>홀리데이 인 상하이 난징로</h3>
-          <span class="when">上海南京路假日酒店 · 주장루 595호 · IHG</span>
+          <h3>콘래드 상하이</h3>
+          <span class="when">上海康莱德酒店 · 난징동루 789호 · 힐튼</span>
           <ul>
-            <li><time>방당</time><span>20~40만 <em>국경절 추정 · 평시 13~20만</em></span></li>
-            <li><time>2방</time><span>1박 40~80만 → <b>3박 1인 40~80만</b> <em>하단이면 예산 안, 상단이면 초과</em></span></li>
-            <li><time>위치</time><span>난징루 보행가 도보 2~3분 · 인민광장역 인접 <em>와이탄 도보 10분</em></span></li>
-            <li><time>후기</time><span>트립닷컴 5,488건 · 위치 9.5 <em>조식 라이브 오믈렛 · 셀프세탁실</em></span></li>
-            <li><time>단점</time><span>구 하워드 존슨 리브랜딩 <em>인테리어는 무난한 체인 스타일</em></span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="d">
-        <span class="no">安全</span>
-        <div>
-          <h3>지 호텔 인민광장 푸젠중루점</h3>
-          <span class="when">全季酒店 · 푸젠중루 225호</span>
-          <ul>
-            <li><time>방당</time><span>13~26만 <em>국경절 추정 · 평시 8~13만</em></span></li>
-            <li><time>2방</time><span>1박 26~52만 → <b>3박 1인 26~52만</b> <em>예산 안에 가장 확실히 들어옴</em></span></li>
-            <li><time>위치</time><span>인민광장역·난징동루역 모두 도보권 <em>2호선 정중앙</em></span></li>
-            <li><time>후기</time><span>한국인 내돈내산 후기 다수 <em>청결·침구 일관 양호</em></span></li>
-            <li><time>주의</time><span><b>창문 없는 객실 카테고리 있음</b> <em>예약 시 有窗 확인 · 20㎡로 좁음</em></span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="d">
-        <span class="no">予備</span>
-        <div>
-          <h3>래디슨 블루 뉴 월드</h3>
-          <span class="when">인민광장역 도보 3분 · 520실</span>
-          <ul>
-            <li><time>방당</time><span>22~35만 <em>국경절 추정 · 평시 11~16만</em></span></li>
-            <li><time>강점</time><span>520실 대형이라 <b>2방 동시 확보가 가장 쉬움</b></span></li>
-            <li><time>단점</time><span>객실 인테리어 낡음(dated) 지적 반복 <em>사진·감성 기대는 낮게</em></span></li>
+            <li><time>방</time><span>더블룸 2개 <em>커플 1방 · 친구 1방(친구 영문명)</em></span></li>
+            <li><time>위치</time><span>난징루 보행가 서쪽 끝 · <b>인민광장역 도보 4분</b> <em>1·2·8호선 · 라이라이 도보 5분 · 양꼬치 맞은편 · 와이탄 도보 15분</em></span></li>
+            <li><time>공항</time><span>홍차오 19km <em>10호선 난징동루역 하차 도보 12분 · 택시 30~40분</em></span></li>
+            <li><time>연락</time><span>+86 21 3318 9999 <em>ConradShanghai.info@ConradHotels.com · 식당 예약은 컨시어지 경유</em></span></li>
+            <li><time>택시</time><span>기사에게 <b>上海康莱德酒店 南京东路789号</b></span></li>
           </ul>
         </div>
       </div>
     </div>
     <details class="tip" style="margin-top:14px;">
-            <summary>외국인 투숙 거부를 피하는 게 제일 중요해</summary>
-            <p>제도상 금지지만 실무 미비로 실제 발생해.
-      ① 국제 체인이나 대형 중국 체인만 고르기 ② 트립닷컴을 <b>한국어·영어 화면</b>으로 검색
-      (중문 화면의 싼 방은 내국인 전용일 수 있어) ③ <b>仅接待中国大陆居民</b> 표기 있으면 제외
-      ④ 예약 후 호텔에 확인하고 답변 스크린샷 보관.
-      그리고 <b>친구 방은 친구 본인 영문명(여권과 동일)으로 예약</b> — 객실마다 여권 등록을 하니까 이름 다르면 체크인에서 막혀.</p>
-          </details>
-    <details class="tip">
-            <summary>예약은 가격보다 재고 싸움</summary>
-            <p>같은 호텔에서 2방을 동시에 잡는 게 병목이고,
-      9월 중순 넘으면 "가격은 있는데 2방이 없는" 상황이 흔해. 지금이 마지막 여유 구간.
-      1순위에 <b>무료취소 + 현장결제</b>로 2방 걸고, 백업 1곳에도 2방 홀드해 둬(국경절엔 호텔 측 오버부킹 취소가 실제로 나).</p>
-          </details>
+      <summary>체크인은 방마다 여권 등록</summary>
+      <p>객실마다 투숙자 여권을 등록하니 <b>친구 방은 친구 본인 영문명(여권과 동일)</b>으로 예약돼 있어야 한다.
+      메이투안 배달·택시용으로 프론트에서 <b>호텔 주소 중국어 카드</b>를 하나 받아두면 편하다.</p>
+    </details>
   </section>
 
   <section class="rv">
@@ -921,7 +911,7 @@
     document.querySelectorAll(".m").forEach(function (m) {
       m.setAttribute("role", "checkbox");
       m.setAttribute("tabindex", "0");
-      m.setAttribute("aria-checked", "false");
+      m.setAttribute("aria-checked", m.classList.contains("done") ? "true" : "false");
       function t() {
         var on = m.classList.toggle("done");
         m.setAttribute("aria-checked", on ? "true" : "false");
@@ -940,79 +930,79 @@
 
     var DAYS = {
       "1": {
-        caption: ["10호선 → 2호선", "공항에서 시내 40분 · 저녁~야경은 전부 도보권"],
+        caption: ["10호선 → 도보", "공항에서 시내 40분 · 저녁은 전부 도보권"],
         pins: [
-          { n: 1, name: "홍차오공항 T1", sub: "SHA", art: "plane",
-            desc: "시내에서 가장 가까운 공항. 지하철 2·10호선이 터미널까지 직결됩니다.",
+          { n: 1, name: "홍차오공항 T1", sub: "SHA", zh: "上海虹桥国际机场T1航站楼", art: "plane",
+            desc: "시내에서 가장 가까운 공항. 10호선이 T1까지 직결됩니다(2호선은 T2만 정차).",
             lat: 31.1979, lng: 121.3300 },
-          { n: 2, name: "난징동루", sub: "숙소 · 南京东路", art: "hotel",
-            desc: "1km 넘는 보행자 거리에 백화점이 몰려 있는 시내 중심. 숙소 기준점.",
-            lat: 31.2360, lng: 121.4790 },
-          { n: 3, name: "톈쯔팡", sub: "田子坊", art: "alley",
-            desc: "1930년대 석고문 주택을 개조한 예술 골목. 좁은 길에 카페·공방·소품샵.",
-            lat: 31.2093, lng: 121.4680 },
-          { n: 4, name: "챠지", sub: "CHAGEE 霸王茶姬", art: "tea",
-            desc: "중국에서 가장 뜨거운 차 음료 체인. 시그니처는 재스민 밀크티 보야절현(伯牙绝弦).",
-            lat: 31.2352, lng: 121.4802 },
-          { n: 5, name: "헌지우이치엔", sub: "很久以前羊肉串 · 제일백화점 6층", art: "skewer",
-            desc: "난징동루 830호 제일백화점(第一百货) B동 6층. 손님 70~80%가 한국인이고 밤 10시 넘으면 거의 전부 한국인이라 대기가 깁니다. 19시 입장이 유리.",
-            lat: 31.2352, lng: 121.4757, star: true },
-          { n: 6, name: "와이탄", sub: "外滩 · 야경", art: "bund",
-            desc: "황푸강 서안의 1920년대 서양식 건물군. 강 건너 푸둥 스카이라인이 정면.",
+          { n: 2, name: "콘래드 상하이", sub: "숙소 · 南京东路789号", zh: "上海康莱德酒店", art: "hotel",
+            desc: "난징루 보행가 서쪽 끝, 인민광장역 도보 4분. 모든 동선의 기준점.",
+            lat: 31.2340, lng: 121.4753 },
+          { n: 3, name: "라이라이", sub: "莱莱小笼 · 天津路504号", zh: "莱莱小笼", art: "xiaolong", star: true,
+            desc: "순게살 소룡포로 유명한 빕구르망. 08:00~14:00 · 15:00~20:00, 체크인 후 15시 재오픈 첫 팀으로.",
+            lat: 31.2357, lng: 121.4772 },
+          { n: 4, name: "헌지우이치엔", sub: "很久以前羊肉串 · 제일백화점 6층", zh: "很久以前羊肉串", art: "skewer", star: true,
+            desc: "난징동루 830호 제일백화점 6층, 숙소 맞은편. 밤 10시 넘으면 한국인 대기가 길어 18시 입장.",
+            lat: 31.2350, lng: 121.4748 },
+          { n: 5, name: "와이탄", sub: "外滩 · 야경", zh: "外滩", art: "bund",
+            desc: "황푸강 서안의 1920년대 건물군. 강 건너 동방명주와 푸둥 스카이라인이 정면.",
             lat: 31.2397, lng: 121.4900 }
         ]
       },
       "2": {
-        caption: ["10호선 → 11호선", "자오퉁대 환승 · 편도 약 1시간"],
+        caption: ["10호선 한 줄", "서쪽 우캉루 갔다가 신톈디 → 예원 → 외탄으로 복귀"],
         pins: [
-          { n: 1, name: "따후춘 본점", sub: "大壶春 · 사천중로 136호", art: "shengjian",
-            desc: "1932년 창업. 2016년부터 4년 연속 미슐랭 빕구르망에 오른 곳이 이 사천중로 본점이다. 국물 없는 청수파 생지엔으로 겉은 바삭, 속은 폭신.",
-            lat: 31.2366, lng: 121.4845 },
-          { n: 2, name: "자오퉁대", sub: "交通大学 · 10↔11호선 환승", art: "metro",
-            desc: "난징동루에서 10호선을 타고 여기서 11호선으로 갈아탑니다. 11호선 종점이 디즈니역이라 한 번만 갈아타면 됩니다.",
-            lat: 31.2018, lng: 121.4348 },
-          { n: 3, name: "디즈니랜드", sub: "13:30 도착", art: "castle",
-            desc: "아시아 최대 규모의 성이 중앙에 선 파크. 오후 입장이라 유료 패스가 필수입니다.",
-            lat: 31.1470, lng: 121.6570, star: true }
+          { n: 1, name: "해가대원", sub: "蟹家大院 · 广东路59号 · 11:00 오픈런", zh: "蟹家大院·十里洋场(外滩店)", art: "noodle",
+            desc: "게살면 대표 브랜드. 외탄점은 蟹黄金 ¥360 등 고가라 메뉴판 먼저. 예약 채널 없음.",
+            lat: 31.2371, lng: 121.4855 },
+          { n: 2, name: "우캉맨션", sub: "武康大楼", zh: "武康大楼", art: "tree",
+            desc: "1924년 지은 다리미 모양 아파트. 상하이에서 사진이 가장 많이 찍히는 건물.",
+            lat: 31.2085, lng: 121.4325 },
+          { n: 3, name: "섭듀드 · 武康庭", sub: "Subdued 武康路378号 · 카페", zh: "Subdued 武康路", art: "shop",
+            desc: "이탈리아 영 여성복 Subdued 아시아 1호점. 도보 5분에 브랜디 멜빌(安福路322号)·HARMAY.",
+            lat: 31.2135, lng: 121.4348 },
+          { n: 4, name: "임시정부 청사", sub: "大韩民国临时政府旧址 · 마당로 306롱", zh: "大韩民国临时政府旧址", art: "alley", star: true,
+            desc: "1926~1932년 대한민국 임시정부가 쓴 석고문 3층 건물. 입장 마감 16:30, 월요일 휴관, ¥20, 내부 촬영 금지.",
+            lat: 31.2140, lng: 121.4715 },
+          { n: 5, name: "예원", sub: "豫园商城 · 야경", zh: "豫园", art: "garden",
+            desc: "정원은 16:00 입장 마감이라 밖의 상가 구역만. 구곡교·호심정 조명이 18시에 켜진다.",
+            lat: 31.2270, lng: 121.4920 },
+          { n: 6, name: "성융싱", sub: "晟永兴 · 19:30 예약", zh: "晟永兴(外滩店)", art: "duck", star: true,
+            desc: "미슐랭 1스타 베이징덕. 광둥루 20호 외탄5호 5층, 창밖으로 강 전망.",
+            lat: 31.2372, lng: 121.4864 }
         ]
       },
       "3": {
-        caption: ["예원 → 임시정부 → 우캉루 → 와이탄", "10호선 한 줄로 서쪽 갔다 저녁에 동쪽 복귀"],
+        caption: ["10호선 → 11호선", "자오퉁대 환승 · 편도 약 1시간"],
         pins: [
-          { n: 1, name: "예원", sub: "豫园 · 소룡포", art: "garden",
-            desc: "1559년 명대에 지은 정원. 지그재그 구곡교와 기와 정자, 태호석 가산.",
-            lat: 31.2270, lng: 121.4920 },
-          { n: 2, name: "해가대원", sub: "Cejerdary 蟹家大院", art: "noodle",
-            desc: "게살면의 대표 브랜드. 양청호 자체 양식장 운영, 게살면 ¥72. 광둥루 59호.",
-            lat: 31.2371, lng: 121.4855 },
-          { n: 3, name: "임시정부 청사", sub: "大韩民国临时政府旧址 · 마당로 306롱", art: "alley",
-            desc: "1926~1932년 대한민국 임시정부가 쓴 석고문 3층 건물. 월요일 휴관, 11:30~13:30 점심 휴관, 입장료 ¥20, 내부 촬영 금지.",
-            lat: 31.2140, lng: 121.4715, star: true },
-          { n: 4, name: "우캉맨션", sub: "武康大楼", art: "tree",
-            desc: "1924년 지은 다리미 모양 아파트. 상하이에서 사진이 가장 많이 찍히는 건물.",
-            lat: 31.2085, lng: 121.4325 },
-          { n: 5, name: "성융싱", sub: "Sheng Yong Xing 晟永兴", art: "duck",
-            desc: "미슐랭 1스타 베이징덕. 광둥루 20호, 외탄 5호 빌딩 5층이라 창밖으로 강 전망.",
-            lat: 31.2372, lng: 121.4864, star: true },
-          { n: 6, name: "상하이타워", sub: "118층 전망대 · 선택", art: "tower",
-            desc: "632m로 중국에서 가장 높은 건물. 저녁 식사 후 야경 보러 갈 선택지.",
-            lat: 31.2337, lng: 121.5055 }
+          { n: 1, name: "따후춘 본점", sub: "大壶春 · 四川中路136号 · 선택", zh: "大壶春(四川中路店)", art: "shengjian",
+            desc: "1932년 창업, 빕구르망 4년 연속. 국물 없는 청수파 생지엔. 시간 되면 들르는 선택 항목.",
+            lat: 31.2366, lng: 121.4845 },
+          { n: 2, name: "자오퉁대", sub: "交通大学 · 10↔11호선 환승", zh: "交通大学站", art: "metro",
+            desc: "난징동루에서 10호선을 타고 여기서 11호선으로 갈아탑니다. 11호선 종점이 디즈니역.",
+            lat: 31.2018, lng: 121.4348 },
+          { n: 3, name: "디즈니랜드", sub: "13:30 도착", zh: "上海迪士尼乐园", art: "castle", star: true,
+            desc: "정문에서 여권 + Klook 예약으로 실물 티켓 교환. 3항 DPA는 트론·雷鸣山漂流·버즈.",
+            lat: 31.1470, lng: 121.6570 }
         ]
       },
       "4": {
-        caption: ["2호선 → 서쪽", "톈핑루에서 홍차오공항 30분 · 13:00 출발"],
+        caption: ["2호선 → 서쪽", "톈핑루에서 홍차오 25분 · 13:00 출발"],
         pins: [
-          { n: 1, name: "징안쓰", sub: "静安寺", art: "temple",
-            desc: "빌딩 사이에 금빛 지붕을 얹은 사찰. 짧게 둘러보기 좋습니다.",
-            lat: 31.2260, lng: 121.4450, star: true },
-          { n: 2, name: "스타벅스 로스터리", sub: "기념품", art: "coffee",
-            desc: "세계 최대급 로스터리 매장. 원두·텀블러 같은 기념품 사기 좋습니다.",
-            lat: 31.2223, lng: 121.4488 },
-          { n: 3, name: "올드 제시", sub: "Old Jesse 老吉士 · 톈핑루", art: "porkbelly",
-            desc: "테이블 7개뿐인 상하이 요리 노포. 홍소육(红烧肉)이 시그니처. 미슐랭 추천, 예약 필수.",
+          { n: 1, name: "징안쓰", sub: "静安寺", zh: "静安寺", art: "temple", star: true,
+            desc: "빌딩 사이에 금빛 지붕을 얹은 사찰. 인민광장에서 2호선 2정거장.",
+            lat: 31.2260, lng: 121.4450 },
+          { n: 2, name: "囍方", sub: "FZ·H囍方 · 富民路255弄", zh: "FZ·H囍方(富民路255弄小区店)", art: "shop",
+            desc: "富民路·巨鹿路 골목 상권. 징안쓰에서 도보 13분, 로스터리까지 도보 12분. 1·7호선 常熟路역 도보 8분.",
+            lat: 31.2210, lng: 121.4510 },
+          { n: 3, name: "스타벅스 로스터리", sub: "南京西路789号 · 기념품", zh: "星巴克臻选上海烘焙工坊", art: "coffee",
+            desc: "세계 최대급 로스터리 매장. 囍方에서 북쪽으로 도보 12분.",
+            lat: 31.2278, lng: 121.4547 },
+          { n: 4, name: "올드 제시", sub: "Old Jesse 老吉士 · 天平路41号 · 예약", zh: "老吉士酒家(天平路店)", art: "porkbelly",
+            desc: "테이블 7개뿐인 상하이 요리 노포. 홍소육(红烧肉)이 시그니처. 11:30 첫 타임 예약.",
             lat: 31.2045, lng: 121.4295 },
-          { n: 4, name: "홍차오공항 T1", sub: "14:45 도착", art: "plane",
-            desc: "연휴 마지막날이라 귀성 러시. 출발 2시간 30분 전 도착 기준.",
+          { n: 5, name: "홍차오공항 T1", sub: "14:45 도착", zh: "上海虹桥国际机场T1航站楼", art: "plane",
+            desc: "연휴 마지막날이라 귀성 러시. 자오퉁대역 10호선 虹桥火车站 방면 25분.",
             lat: 31.1979, lng: 121.3300 }
         ]
       }
@@ -1021,6 +1011,7 @@
     /* 지하철역 좌표(개략) + 노선 색 */
     var ST = {
       hongqiaoT1:  { n: "훙차오공항 T1역", lat: 31.1965, lng: 121.3345 },
+      renmin:      { n: "인민광장역",     lat: 31.2336, lng: 121.4725 },
       nanjingdong: { n: "난징동루역",     lat: 31.2377, lng: 121.4805 },
       yuyuan:      { n: "위위안역",       lat: 31.2270, lng: 121.4890 },
       library:     { n: "상하이도서관역",  lat: 31.2100, lng: 121.4390 },
@@ -1034,19 +1025,21 @@
     /* 일자별 지하철 구간: 노선 · 탑승역 → 하차역 · 소요시간 */
     var RAIL = {
       "1": [{ line: "10", from: "hongqiaoT1", to: "nanjingdong", mins: 40 }],
-      "2": [{ line: "10", from: "nanjingdong", to: "jiaotong", mins: 20 },
+      "2": [{ line: "10", from: "nanjingdong", to: "library", mins: 15 },
+            { line: "10", from: "library", to: "xintiandi", mins: 12 },
+            { line: "10", from: "xintiandi", to: "yuyuan", mins: 8 }],
+      "3": [{ line: "10", from: "nanjingdong", to: "jiaotong", mins: 20 },
             { line: "11", from: "jiaotong", to: "disney", mins: 40 }],
-      "3": [{ line: "10", from: "nanjingdong", to: "xintiandi", mins: 10 },
-            { line: "10", from: "xintiandi", to: "library", mins: 12 }],
-      "4": [{ line: "10", from: "jiaotong", to: "hongqiaoT1", mins: 25 }]
+      "4": [{ line: "2", from: "renmin", to: "jingan", mins: 8 },
+            { line: "10", from: "jiaotong", to: "hongqiaoT1", mins: 25 }]
     };
 
     /* 구간 이동수단·소요시간 (핀 n → n+1) */
     var LEGS = {
-      "1": ["2호선 40분", "10호선 15분", "10호선 10분", "도보 3분", "도보 10분"],
-      "2": ["10호선 20분", "11호선 40분"],
-      "3": ["도보 15분", "10호선 10분 · 도보 8분", "10호선 12분 · 도보 5분", "10호선 25분", "지하철 15분"],
-      "4": ["도보 10분", "택시 15분", "2호선 30분"]
+      "1": ["10호선 40분 · 도보 12분", "도보 5분", "보행가 산책 · 도보 5분", "도보 15분"],
+      "2": ["10호선 15분 · 도보 5분", "도보 8분", "10호선 12분 · 도보 8분", "10호선 8분", "도보 15분"],
+      "3": ["10호선 20분", "11호선 40분"],
+      "4": ["도보 13분", "도보 12분", "택시 15분", "10호선 25분"]
     };
 
     /* 명소 사진 — Wikimedia Commons, 페이지 하단에 출처 표기 */
@@ -1073,6 +1066,8 @@
 
     /* 명소 일러스트 — 외부 이미지 없이 직접 그림 */
     var ART = {
+      xiaolong: '<path class="s" d="M6 38h52"/><path class="f" d="M12 30h40v6H12z"/><path class="f2" d="M14 22h36v8H14z"/><path class="s" d="M14 22c0-3 2-5 5-5h26c3 0 5 2 5 5"/><circle class="d" cx="22" cy="27" r="2.6"/><circle class="d" cx="32" cy="27" r="2.6"/><circle class="d" cx="42" cy="27" r="2.6"/><path class="s2" d="M20 12c0-3 2-4 2-6M32 12c0-3 2-4 2-6M44 12c0-3 2-4 2-6"/>',
+      shop: '<path class="s" d="M4 40h56"/><path class="f" d="M12 40V22h40v18z"/><path class="d" d="M8 22l6-8h36l6 8z"/><path class="f2" d="M16 40V28h10v12z"/><path class="s" d="M30 28h16v8H30z"/><path class="s2" d="M8 22h48"/>',
       plane: '<path class="s" d="M6 30h52"/><path class="f" d="M14 26l10-12h5l-4 12h9l6-8h4l-3 8h9v4H14z"/><circle class="d" cx="24" cy="33" r="2"/><circle class="d" cx="44" cy="33" r="2"/>',
       hotel: '<path class="s" d="M4 38h56"/><path class="f" d="M12 38V12h18v26z"/><path class="f2" d="M34 38V20h16v18z"/><path class="s" d="M16 17h4M24 17h2M16 23h4M24 23h2M16 29h4M24 29h2M38 25h3M45 25h3M38 31h3M45 31h3"/><path class="d" d="M20 38v-6h6v6z"/>',
       alley: '<path class="s" d="M4 38h56"/><path class="f" d="M10 38V14l8-5 8 5v24z"/><path class="f2" d="M38 38V18l8-4 8 4v20z"/><path class="s" d="M15 20h6M15 27h6M43 23h6M43 30h6"/><path class="d" d="M28 38c0-6 4-9 4-9s4 3 4 9z"/><circle class="d" cx="32" cy="12" r="3"/>',
@@ -1183,6 +1178,31 @@
 
     var ll = function (p) { return p.lat + "," + p.lng; };
 
+    /* WGS-84 → GCJ-02(高德 좌표계) 변환 */
+    function gcj(lng, lat) {
+      var PI = Math.PI, A = 6378245.0, EE = 0.00669342162296594323;
+      var x = lng - 105, y = lat - 35;
+      var dl = -100 + 2 * x + 3 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * Math.sqrt(Math.abs(x));
+      dl += (20 * Math.sin(6 * x * PI) + 20 * Math.sin(2 * x * PI)) * 2 / 3;
+      dl += (20 * Math.sin(y * PI) + 40 * Math.sin(y / 3 * PI)) * 2 / 3;
+      dl += (160 * Math.sin(y / 12 * PI) + 320 * Math.sin(y * PI / 30)) * 2 / 3;
+      var dg = 300 + x + 2 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * Math.sqrt(Math.abs(x));
+      dg += (20 * Math.sin(6 * x * PI) + 20 * Math.sin(2 * x * PI)) * 2 / 3;
+      dg += (20 * Math.sin(x * PI) + 40 * Math.sin(x / 3 * PI)) * 2 / 3;
+      dg += (150 * Math.sin(x / 12 * PI) + 300 * Math.sin(x / 30 * PI)) * 2 / 3;
+      var rl = lat / 180 * PI, m = Math.sin(rl); m = 1 - EE * m * m; var sm = Math.sqrt(m);
+      dl = (dl * 180) / ((A * (1 - EE)) / (m * sm) * PI);
+      dg = (dg * 180) / (A / sm * Math.cos(rl) * PI);
+      return [(lng + dg).toFixed(6), (lat + dl).toFixed(6)];
+    }
+
+    /* 高德地图 검색으로 열기 — 중국 현지에서는 구글맵 대신 이걸 쓴다 */
+    function amapUrl(p) {
+      var c = gcj(p.lng, p.lat);
+      return "https://uri.amap.com/search?keyword=" + encodeURIComponent(p.zh)
+        + "&center=" + c[0] + "," + c[1] + "&city=310000&view=map&src=shtrip&callnative=1";
+    }
+
     /* 구글맵 앱/웹으로 열기 */
     function dirUrl(pins) {
       var u = "https://www.google.com/maps/dir/?api=1&travelmode=transit"
@@ -1271,7 +1291,8 @@
             className: "pinlabel", opacity: 1
           });
           mk.bindPopup('<b>' + p.name + "</b>" + (p.sub ? '<i>' + p.sub + "</i>" : "")
-            + (p.desc ? "<span>" + p.desc + "</span>" : ""));
+            + (p.desc ? "<span>" + p.desc + "</span>" : "")
+            + (p.zh ? '<a class="amaplink" href="' + amapUrl(p) + '" target="_blank" rel="noopener">高德에서 열기 ↗</a>' : ""));
           markers.push(mk);
         });
 
@@ -1371,6 +1392,21 @@
       go.textContent = "구글맵에서 열기 ↗";
       cap.appendChild(go);
       host.appendChild(cap);
+
+      /* 高德 버튼 — 장소마다 高德地图 검색 결과로 바로 연다 */
+      var am = document.createElement("div");
+      am.className = "amap";
+      var al = document.createElement("b");
+      al.textContent = "高德";
+      am.appendChild(al);
+      pins.forEach(function (p) {
+        if (!p.zh) return;
+        var a = document.createElement("a");
+        a.href = amapUrl(p); a.target = "_blank"; a.rel = "noopener";
+        a.textContent = p.n + " " + p.name;
+        am.appendChild(a);
+      });
+      host.appendChild(am);
 
       /* 지도 라이브러리를 못 불러온 환경이면 직접 그린 지도로 대체 */
       if (!ok) { frame.remove(); renderSvgMap(host, day); }
